@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zone Ludique — Musique & Révolutions</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ludique.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo"><a href="index.html">Musique <span>&</span> Révolutions</a></div>
+    <button class="menu-toggle" aria-label="Menu">Menu</button>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="map.html">Carte</a>
+      <a href="ludique.html" class="active">Zone Ludique</a>
+      <a href="about.html">À propos</a>
+    </nav>
+  </header>
+
+  <main class="ludique-page">
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="ludique-hero">
+      <div class="ludique-hero-inner">
+        <div class="ludique-stamp">CLASSIFIÉ</div>
+        <h1 class="ludique-title">ZONE<br><span>LUDIQUE</span></h1>
+        <p class="ludique-sub">Trois épreuves pour le révolutionnaire en herbe.<br>Déchiffre. Crée. Prouve ta valeur.</p>
+        <div class="ludique-nav-pills">
+          <a href="#codes" class="pill">01 — Messages codés</a>
+          <a href="#affiches" class="pill">02 — Générateur d'affiches</a>
+          <a href="#quiz" class="pill">03 — Quiz musical</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 1 — MESSAGES CODÉS
+    ══════════════════════════════════════════════ -->
+    <section class="ludi-section" id="codes">
+      <div class="section-label">01</div>
+      <h2 class="section-title">Messages codés</h2>
+      <p class="section-intro">Les révolutionnaires ne parlaient jamais en clair. Chaque message ci-dessous cache une vérité sur la musique et les révolutions — déchiffre-le pour la révéler.</p>
+
+      <div class="codes-grid">
+
+        <!-- CÉSAR — encodé shift=3, "LA MUSIQUE EST UNE ARME" → "OD PXVLTXH HVW XQH DUPH" -->
+        <div class="code-card" data-type="cesar">
+          <div class="code-card-header">
+            <span class="code-badge">CHIFFRE DE CÉSAR</span>
+            <span class="code-shift-info">Décalage testé : <strong id="cesar-shift-display">1</strong></span>
+          </div>
+          <p class="code-instructions">Chaque lettre a été décalée de X positions dans l'alphabet. Fais glisser le curseur pour tester chaque clé — le message se décode en direct.</p>
+          <div class="code-encrypted live-decode" id="cesar-live">OD PXVLTXH HVW XQH DUPH</div>
+          <div class="code-controls">
+            <input type="range" min="1" max="25" value="1" id="cesar-slider" class="code-slider">
+            <div class="code-labels"><span>Clé 1</span><span>Clé 25</span></div>
+          </div>
+          <div class="code-result hidden" id="cesar-result">
+            <div class="code-unlocked-label">✦ MESSAGE DÉCHIFFRÉ — CLÉ 3</div>
+            <p class="code-fact">En Iran sous Khomeini (1979), la musique populaire fut bannie des ondes. Les artistes distribuaient leurs chansons sur cassettes en réseau clandestin — le premier "streaming" révolutionnaire de l'histoire.</p>
+          </div>
+          <div class="code-hint" id="cesar-hint">Le message se révèle quand tu trouves la bonne clé…</div>
+        </div>
+
+        <!-- MORSE — "BELLA CIAO" : -... . .-.. .-.. .- / -.-. .. .- --- -->
+        <div class="code-card" data-type="morse">
+          <div class="code-card-header">
+            <span class="code-badge">CODE MORSE</span>
+            <span class="code-shift-info">· = point &nbsp;|&nbsp; — = trait &nbsp;|&nbsp; / = espace mot</span>
+          </div>
+          <p class="code-instructions">Chaque lettre est représentée par une suite de points et de traits. Écoute le signal ou déchiffre visuellement.</p>
+          <div class="morse-letters" id="morse-letters">
+            <span class="morse-letter-group"><span class="ml-letter">B</span><span class="ml-code">-&nbsp;·&nbsp;·&nbsp;·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">E</span><span class="ml-code">·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">L</span><span class="ml-code">·&nbsp;-&nbsp;·&nbsp;·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">L</span><span class="ml-code">·&nbsp;-&nbsp;·&nbsp;·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">A</span><span class="ml-code">·&nbsp;-</span></span>
+            <span class="morse-word-sep">/</span>
+            <span class="morse-letter-group"><span class="ml-letter">C</span><span class="ml-code">-&nbsp;·&nbsp;-&nbsp;·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">I</span><span class="ml-code">·&nbsp;·</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">A</span><span class="ml-code">·&nbsp;-</span></span>
+            <span class="morse-letter-group"><span class="ml-letter">O</span><span class="ml-code">-&nbsp;-&nbsp;-</span></span>
+          </div>
+          <div class="code-controls morse-controls">
+            <button class="btn-morse-play" id="morse-play-btn" onclick="playMorse()">
+              <span class="morse-icon">▶</span> Écouter le signal
+            </button>
+            <button class="btn-morse-reveal" onclick="revealMorse()">Révéler la traduction</button>
+          </div>
+          <div class="code-result hidden" id="morse-result">
+            <div class="code-unlocked-label">✦ MESSAGE DÉCHIFFRÉ</div>
+            <div class="code-decoded-text" id="morse-decoded-text"></div>
+            <p class="code-fact">"Bella Ciao" est né dans les rizières du Pô au début du XXe siècle — chant de protestation des <em>mondine</em>, ouvrières saisonnières exploitées. Repris en 1944 par les partisans antifascistes italiens, il est devenu l'hymne universel de la résistance.</p>
+          </div>
+        </div>
+
+        <!-- BINAIRE — "MARLEY" en ASCII 8 bits -->
+        <div class="code-card" data-type="binaire">
+          <div class="code-card-header">
+            <span class="code-badge">CODE BINAIRE ASCII</span>
+            <span class="code-shift-info">8 bits = 1 caractère</span>
+          </div>
+          <p class="code-instructions">Chaque groupe de 8 bits représente le code ASCII d'une lettre. Clique sur "Décoder" pour voir la conversion octet par octet.</p>
+          <div class="binary-bytes" id="binary-bytes">
+            <span class="byte-group" data-char="V">01010110</span>
+            <span class="byte-group" data-char="I">01001001</span>
+            <span class="byte-group" data-char="C">01000011</span>
+            <span class="byte-group" data-char="T">01010100</span>
+            <span class="byte-group" data-char="O">01001111</span>
+            <span class="byte-group" data-char="R">01010010</span>
+          </div>
+          <div class="binary-step-display" id="binary-step-display"></div>
+          <div class="binary-result-word" id="binary-result-word"></div>
+          <div class="code-controls">
+            <button class="btn-decode" id="binary-btn" onclick="decodeBinary()">Décoder octet par octet</button>
+          </div>
+          <div class="code-result hidden" id="binary-result">
+            <div class="code-unlocked-label">✦ MESSAGE DÉCHIFFRÉ</div>
+            <p class="code-fact">Víctor Jara, chanteur et guitariste chilien, fut arrêté lors du coup d'État de Pinochet le 11 septembre 1973. Ses geôliers lui brisèrent les deux mains pour qu'il ne puisse plus jamais jouer. Il continua à chanter malgré la torture, et fut exécuté quelques jours plus tard. Son nom est devenu symbole de la résistance musicale contre les dictatures.</p>
+          </div>
+        </div>
+
+        <!-- ATBASH — "BOB MARLEY" → "YLY NZIOVB" -->
+        <div class="code-card" data-type="atbash">
+          <div class="code-card-header">
+            <span class="code-badge">ATBASH — CHIFFRE HÉBRAÏQUE</span>
+            <span class="code-shift-info">A↔Z &nbsp; B↔Y &nbsp; C↔X &nbsp; …</span>
+          </div>
+          <p class="code-instructions">Dans ce chiffre, chaque lettre est remplacée par son miroir dans l'alphabet : A devient Z, B devient Y, M devient N… Clique pour voir la transformation.</p>
+          <div class="atbash-display" id="atbash-display">
+            <span class="atbash-char" data-plain="B">Y</span>
+            <span class="atbash-char" data-plain="O">L</span>
+            <span class="atbash-char" data-plain="B">Y</span>
+            <span class="atbash-char atbash-space"> </span>
+            <span class="atbash-char" data-plain="M">N</span>
+            <span class="atbash-char" data-plain="A">Z</span>
+            <span class="atbash-char" data-plain="R">I</span>
+            <span class="atbash-char" data-plain="L">O</span>
+            <span class="atbash-char" data-plain="E">V</span>
+            <span class="atbash-char" data-plain="Y">B</span>
+          </div>
+          <div class="code-controls">
+            <button class="btn-decode" id="atbash-btn" onclick="decodeAtbash()">Appliquer l'Atbash</button>
+          </div>
+          <div class="code-result hidden" id="atbash-result">
+            <div class="code-unlocked-label">✦ MESSAGE DÉCHIFFRÉ</div>
+            <p class="code-fact">Bob Marley et le reggae jamaïcain ont transformé la musique en arme politique pacifique. Ses textes tirés du Rastafarisme dénonçaient l'oppression coloniale (le "Babylon") — un langage musical codé que les autorités jamaïcaines mirent des années à vraiment comprendre.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 2 — GÉNÉRATEUR D'AFFICHES
+    ══════════════════════════════════════════════ -->
+    <section class="ludi-section ludi-section-dark" id="affiches">
+      <div class="section-label">02</div>
+      <h2 class="section-title">Générateur d'affiches</h2>
+      <p class="section-intro">Compose ton affiche révolutionnaire. Choisis un fond, un slogan, une couleur — et télécharge-la.</p>
+
+      <div class="poster-studio">
+
+        <!-- Panneau de contrôle -->
+        <div class="poster-controls">
+
+          <div class="ctrl-group">
+            <label class="ctrl-label">Fond d'affiche</label>
+            <div class="bg-presets">
+              <button class="bg-preset active" data-bg="1" onclick="selectBg(1)">
+                <img src="assets/img/poster-bg-1.png" alt="Fond 1 — Femme poing levé">
+                <span>Résistance</span>
+              </button>
+              <button class="bg-preset" data-bg="2" onclick="selectBg(2)">
+                <img src="assets/img/poster-bg-2.png" alt="Fond 2 — Silhouette poing">
+                <span>Solidarité</span>
+              </button>
+              <button class="bg-preset" data-bg="3" onclick="selectBg(3)">
+                <img src="assets/img/poster-bg-3.png" alt="Fond 3 — Statues renversées">
+                <span>Rupture</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ctrl-group">
+            <label class="ctrl-label">Filtre couleur</label>
+            <div class="color-presets">
+              <button class="color-btn active" data-color="none" onclick="selectColor('none')" style="background:#dfd5b2;border:2px solid #1a1410">Papier</button>
+              <button class="color-btn" data-color="red" onclick="selectColor('red')" style="background:#8a2c18;color:#dfd5b2">Rouge</button>
+              <button class="color-btn" data-color="blue" onclick="selectColor('blue')" style="background:#1c3a4f;color:#dfd5b2">Bleu</button>
+              <button class="color-btn" data-color="sepia" onclick="selectColor('sepia')" style="background:#6b4c2a;color:#dfd5b2">Sépia</button>
+              <button class="color-btn" data-color="green" onclick="selectColor('green')" style="background:#1a3a1a;color:#dfd5b2">Vert</button>
+            </div>
+          </div>
+
+          <div class="ctrl-group">
+            <label class="ctrl-label">Slogan (ligne principale)</label>
+            <div class="slogan-presets">
+              <button class="slogan-btn active" onclick="setSlogan('LA MUSIQUE\nN\'EST PAS\nNEUTRE')">La musique n'est pas neutre</button>
+              <button class="slogan-btn" onclick="setSlogan('CHANTER\nC\'EST\nRÉSISTER')">Chanter c'est résister</button>
+              <button class="slogan-btn" onclick="setSlogan('LA VOIX\nDU\nPEUPLE')">La voix du peuple</button>
+              <button class="slogan-btn" onclick="setSlogan('INTERDIRE\nLA MUSIQUE\nC\'EST ÉCHOUER')">Interdire la musique</button>
+            </div>
+            <input type="text" id="custom-slogan" class="ctrl-input" placeholder="Ou écris ton propre slogan…" oninput="updateCustomSlogan(this.value)">
+          </div>
+
+          <div class="ctrl-group">
+            <label class="ctrl-label">Sous-titre / Pays</label>
+            <input type="text" id="poster-subtitle" class="ctrl-input" value="MUSIQUE &amp; RÉVOLUTIONS" oninput="updateSubtitle(this.value)">
+          </div>
+
+          <div class="ctrl-group">
+            <label class="ctrl-label">Année</label>
+            <input type="text" id="poster-year" class="ctrl-input" value="2026" maxlength="6" oninput="updateYear(this.value)">
+          </div>
+
+          <button class="btn-download" onclick="downloadPoster()">
+            ↓ Télécharger l'affiche (PNG)
+          </button>
+        </div>
+
+        <!-- Aperçu -->
+        <div class="poster-preview-wrap">
+          <div class="poster-preview-label">APERÇU</div>
+          <canvas id="poster-canvas" width="600" height="850"></canvas>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 3 — QUIZ MUSICAL
+    ══════════════════════════════════════════════ -->
+    <section class="ludi-section" id="quiz">
+      <div class="section-label">03</div>
+      <h2 class="section-title">Quiz musical</h2>
+      <p class="section-intro">5 secondes d'écoute. 4 propositions. Prouve que tu reconnais les hymnes qui ont changé l'Histoire.</p>
+
+      <!-- Score header -->
+      <div class="quiz-scoreboard">
+        <div class="score-display">
+          <img src="assets/img/icon-poing.png" class="score-fist" alt="Points">
+          <span class="score-count" id="quiz-score">0</span>
+          <span class="score-label">POINTS</span>
+        </div>
+        <div class="quiz-progress-wrap">
+          <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:0%"></div>
+          <span class="quiz-progress-text" id="quiz-progress-text">Question 0 / 10</span>
+        </div>
+      </div>
+
+      <!-- Zone de jeu -->
+      <div class="quiz-arena" id="quiz-arena">
+
+        <!-- Écran de départ -->
+        <div class="quiz-screen" id="quiz-start-screen">
+          <div class="quiz-start-deco">
+            <img src="assets/img/icon-poing.png" alt="Poing levé" class="start-fist">
+          </div>
+          <h3>Êtes-vous prêt ?</h3>
+          <p>10 extraits musicaux révolutionnaires. Chaque bonne réponse rapporte <strong>1 point</strong>.<br>À la fin, vous recevrez votre <strong>grade révolutionnaire</strong>.</p>
+          <button class="btn-quiz-start" onclick="startQuiz()">Commencer le quiz</button>
+        </div>
+
+        <!-- Écran de question -->
+        <div class="quiz-screen hidden" id="quiz-question-screen">
+          <div class="quiz-question-header">
+            <span class="quiz-q-num" id="quiz-q-num">Question 1</span>
+            <span class="quiz-country" id="quiz-country-flag"></span>
+          </div>
+          <div class="quiz-player">
+            <button class="quiz-play-btn" id="quiz-play-btn" onclick="playQuizAudio()">
+              <span class="play-icon">▶</span>
+              <span class="play-label">Écouter l'extrait (5 sec)</span>
+            </button>
+            <div class="quiz-audio-bar" id="quiz-audio-bar">
+              <div class="quiz-audio-progress" id="quiz-audio-progress"></div>
+            </div>
+            <div class="quiz-played-hint hidden" id="quiz-played-hint">Extrait joué — fais ton choix !</div>
+          </div>
+          <div class="quiz-choices" id="quiz-choices">
+            <!-- injecté par JS -->
+          </div>
+          <div class="quiz-feedback hidden" id="quiz-feedback">
+            <div class="feedback-inner" id="quiz-feedback-inner"></div>
+            <button class="btn-next" id="btn-next" onclick="nextQuestion()">Question suivante →</button>
+          </div>
+        </div>
+
+        <!-- Écran de résultat final -->
+        <div class="quiz-screen hidden" id="quiz-result-screen">
+          <div class="result-fist-wrap">
+            <img src="assets/img/icon-poing.png" alt="Poing" class="result-fist">
+          </div>
+          <div class="result-grade" id="result-grade-badge"></div>
+          <div class="result-score-big" id="result-score-big"></div>
+          <p class="result-desc" id="result-desc"></p>
+          <div class="result-classement">
+            <h4>Barème révolutionnaire</h4>
+            <ul class="grade-list" id="grade-list">
+              <!-- injecté par JS -->
+            </ul>
+          </div>
+          <button class="btn-quiz-start" onclick="restartQuiz()">Rejouer</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Groupe A — IUT Toulouse R2.13 — 2026</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/ludique.js"></script>
+</body>
+</html>

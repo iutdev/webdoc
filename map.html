@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Interactive — Musique & Révolutions dans le Monde</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo"><a href="index.html">Musique <span>&</span> Révolutions</a></div>
+    <button class="menu-toggle" aria-label="Menu">Menu</button>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="map.html">Carte</a>
+      <a href="about.html">À propos</a>
+    </nav>
+  </header>
+
+  <main class="map-page">
+    <div class="map-layout">
+      <div class="timeline-sidebar">
+        <div class="epoch-label" id="epoch-label-side">Renaissance</div>
+        <div class="epoch-vertical">
+          <button class="epoch-btn active" data-epoch="renaissance">R</button>
+          <button class="epoch-btn" data-epoch="xixe">XIX</button>
+          <button class="epoch-btn" data-epoch="xxe">XX</button>
+          <button class="epoch-btn" data-epoch="xxie">XXI</button>
+        </div>
+        <input type="range" min="0" max="3" value="0" id="epoch-slider" class="epoch-slider-vert">
+      </div>
+      <div id="country-panel" class="country-panel">
+        <div class="country-panel-content">
+          <button class="country-panel-close" onclick="closeCountryPanel()">&times;</button>
+          <div class="country-panel-header">
+            <img id="panel-flag" class="panel-flag" src="" alt="">
+            <h2 id="panel-name" class="panel-name"></h2>
+          </div>
+          <p id="panel-figure" class="panel-figure"></p>
+          <div class="panel-divider"></div>
+          <h3 class="panel-songs-title">Chants révolutionnaires</h3>
+          <ul id="panel-songs" class="panel-songs"></ul>
+        </div>
+      </div>
+      <div class="map-container">
+        <h2>Explorez le monde des révolutions musicales</h2>
+        <p class="map-subtitle">Cliquez sur un pays pour zoomer, puis sur un point pour découvrir une musique</p>
+        <p class="map-legend"><span class="legend-dot"></span> Musiques révolutionnaires écrites ici</p>
+        <div class="search-bar">
+          <input type="text" id="search-input" class="search-input" placeholder="Rechercher un chant, un artiste, une ville…">
+        </div>
+        <div class="map-controls">
+          <button id="reset-zoom-btn" class="reset-zoom-btn" onclick="resetMapZoom()" style="display:none">&#x2190; Monde</button>
+        </div>
+        <div class="map-svg-wrapper" id="map-wrapper">
+          <svg id="world-map" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <div id="map-loading" class="map-loading">Chargement de la carte...</div>
+      </div>
+    </div>
+
+    <div id="song-detail" class="song-detail">
+      <div class="song-detail-backdrop" onclick="closeSongDetail()"></div>
+      <div class="song-detail-panel">
+        <button class="song-detail-close" onclick="closeSongDetail()">&times;</button>
+        <div class="song-detail-image" id="song-detail-image">
+          <div class="song-detail-year" id="song-detail-year"></div>
+        </div>
+        <div class="song-detail-content">
+          <span class="song-detail-epoch" id="song-detail-epoch"></span>
+          <h2 class="song-detail-title" id="song-detail-title"></h2>
+          <p class="song-detail-artist" id="song-detail-artist"></p>
+          <p class="song-detail-location" id="song-detail-location"></p>
+          <div class="song-detail-divider"></div>
+          <p class="song-detail-desc" id="song-detail-desc"></p>
+          <div class="song-detail-player" id="song-detail-player">
+            <div class="player-placeholder">Lecteur audio à venir</div>
+          </div>
+          <div id="song-detail-extra" class="song-detail-extra" style="display:none">
+            <div class="song-detail-section">
+              <h3 class="song-section-title">Histoire &amp; Origine</h3>
+              <p class="song-section-body" id="song-detail-histoire"></p>
+            </div>
+            <div class="song-detail-section">
+              <h3 class="song-section-title">Pourquoi elle a été écrite</h3>
+              <p class="song-section-body" id="song-detail-pourquoi"></p>
+            </div>
+            <div class="song-detail-section">
+              <h3 class="song-section-title">Impact révolutionnaire &amp; utilité politique</h3>
+              <p class="song-section-body" id="song-detail-impact"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Groupe A — IUT Toulouse R2.13 — 2026</p>
+  </footer>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="js/data.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tutorial.js"></script>
+</body>
+</html>

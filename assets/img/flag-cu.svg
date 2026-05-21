@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Fond blanc (bandes blanches) -->
+  <rect width="900" height="600" fill="#fff"/>
+  <!-- 3 bandes bleues (5 bandes égales : bleu-blanc-bleu-blanc-bleu) -->
+  <rect y="0"   width="900" height="120" fill="#002a8f"/>
+  <rect y="240" width="900" height="120" fill="#002a8f"/>
+  <rect y="480" width="900" height="120" fill="#002a8f"/>
+  <!-- Triangle rouge -->
+  <polygon points="0,0 375,300 0,600" fill="#cf142b"/>
+  <!-- Étoile blanche 5 branches, centre (148,300), R=80, r=32 -->
+  <polygon points="148,220 158.8,274.1 216.1,275.3 170.4,309.9 187,364.7 148,332 109,364.7 125.6,309.9 79.9,275.3 137.2,274.1" fill="#fff"/>
+</svg>

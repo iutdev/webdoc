@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Moitié supérieure blanche -->
+  <rect width="900" height="300" fill="#fff"/>
+  <!-- Moitié inférieure rouge -->
+  <rect y="300" width="900" height="300" fill="#d52b1e"/>
+  <!-- Canton bleu (carré 300x300) -->
+  <rect width="300" height="300" fill="#0039a6"/>
+  <!-- Étoile blanche 5 branches, centre (150,150), R=90, r=36 -->
+  <polygon points="150,60 171.2,120.9 235.6,122.2 184.2,161.1 202.9,222.8 150,186 97.1,222.8 115.8,161.1 64.4,122.2 128.8,120.9" fill="#fff"/>
+</svg>
